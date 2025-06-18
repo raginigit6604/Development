@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+
+  <!-- For Customizing Tailwind CSs -->
+  <!-- <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+      }
+    </style> -->
+</head>
+
+<body>
+    <!--grid-->
+    <h1> Grid demo</h1>
+    <div class="border-2 border-green-500 w-[100vw] h-[80vh]
+ grid grid-cols-4 gap-2 p-10/2">
+        <div class = "border">1</div>
+       <img class=" animate-bounce"src="https://img.freepik.com/premium-photo/plate-tasty-momos-with-white-background_1111504-12913.jpg? w-100vw ">
+       <div class = "border col-span-1 row-span-1 animate-spin">3</div>
+       <div class = "border animate-ping">4</div>
+       <div class = "border animate-pulse bg-pink-400 hover:bg-yellow-300">5</div>
+    </div>
+    <br>
+    <br>
+    <br>
+  <!-- Flex = it is a container property that handle child directions
+ it is used to create responsive design
+ flex property use krne se sare div 1 hi line me aa jate hai
+ wrap property next row me shift krta hai jb eleemnts shrink krne lagte hai-->
+    <div class = "border-2 border-red-500 w-[80vw] h-[80vh] flex justify-center justify-end jstify-between justify-evenly
+    items-center gap-1 flex flex-col">
+       <div class = "border w-12 h-12">Flex</div>
+       <div class = "border w-12 h-12">Flex</div>
+       <div class = "border w-12 h-12">Flex</div>
+       <div class = "border w-12 h-12">Flex</div>
+       <div class = "border w-12 h-12">Flex</div>
+    </div>
+  <h1 class=" text-[#fb5607] text-3xl text-red-400 font-bold underline">
+    Hello world!
+  </h1>
+  <h1 class="text-yellow-500 text-3xl font-bold loadingd overline">Hello Gi</h1>
+  <br>
+  <p class="border-2 border-blue-200 border-dashed bg-gray-100 text-center p-10">Border</p>
+  <br>
+  <p class="bg-gradient-to-r from-green-200 to-green-700 text-3xl text-center p-10 rounded-3xl m-10">Gradient</p>
+  <br><br>
+<!-- Padding & Margin -->
+  <p class="bg-yellow-200 p-4 pt-10 py-12 border mx-auto">Padding & Margin</p><br>
+  <!-- OverFlow -->
+   <p class="bg-green-200 w-20 capitalize overflow-hidden overflow-auto overflow-scroll">This text is overflowing</p>
+
+   <!--to search hexadeciamal color code or opacity we go on the browser and search hexa decimal color code opacity the github link was there --> 
+
+   <p class = "bg-[linear-gradient(15deg,#1d3557,#457b9d,#d62828)]">Custom gradient</p>
+   <br>
+   <br>
+   <p class="bg-red-200 hover:bg-red-500 hover:border hover:shadow-md shadow-red-300 hover:text-white"> hover</p>
+   <br>
+   <br>
+   <br>
+   <br>
+   <p class="bg-green-200 active:bg-red-500 active:border active:shadow-md shadow-red-300 active:text-white animate-bounce">Active</p>
+   <br>
+   <br>
+   <!--media query-->
+   <p class="bg-blue-300 sm:bg-red-300 md:bg-green-500 text-shadow-sm text-shadow-red-500 colorRedclass animate-spin"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi beatae, dolorum sapiente delectus cum iusto. Dolores assumenda obcaecati recusandae! Exercitationem cupiditate dolorum aliquam optio obcaecati similique quo maiores asperiores libero?</p>
+   <br>
+   <br>
+   
+</body>
+
+</html>
