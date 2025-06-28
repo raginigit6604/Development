@@ -1,0 +1,77 @@
+h2{
+  background: linear-gradient(45deg, #f06, rgba(120, 120, 238, 0.352), #fb6f92,#78b6fc);
+  /* background-image: url(""); */
+  background-size: cover;
+}
+
+h2:hover{
+  background: linear-gradient(90deg, rgb(68, 0, 255), rgba(163, 238, 120, 0.352), #fbf26f,#fccc78);
+}
+
+h2:active{
+  background: linear-gradient(135deg, rgb(255, 0, 0), rgba(238, 238, 120, 0.352), #fb6f92,#78fc90);
+}
+
+input{
+  background: linear-gradient(45deg, #f06, #fb6f9242);
+}
+
+input:focus{
+  background: linear-gradient(90deg, #fbf26f,#fccc7833);
+}
+
+#box{
+  width: 200px;
+  height: 200px;
+  border: 2px solid red;
+}
+
+#box:hover{
+  /* transform: rotate(90deg); */
+  /* transform: rotate(5turn); */
+  /* transform: scale(1.05); */
+  transform: translateX(500px);
+  transition-duration: 3s;
+  /* transition-delay: 1s; */
+  transition-timing-function: cubic-bezier(.34,.08,.55,.95);
+}
+
+#box2{
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  animation-name: move;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(.34,.08,.55,.95);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  /* postion after animation stops */
+  animation-fill-mode: forwards;
+}
+
+/* @keyframes move{
+  from{
+    transform: translateX(0px);
+  }
+  to{
+    transform: translateX(500px);
+  }
+} */
+
+@keyframes move{
+  0%{
+    transform: translateX(0px);
+  }
+  25%{
+    transform: translateX(500px);
+  }
+  50%{
+    transform: translateY(500px) translateX(500px) rotate(360deg);
+  }
+  75%{
+    transform: translateX(0px) translateY(500px);
+  }
+  100%{
+    transform: translateY(0px) rotate(0deg);
+  }
+}

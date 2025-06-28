@@ -1,0 +1,28 @@
+#container{
+  border: 2px solid black;
+  width: 90vw;
+  height: 90vh;
+  padding: 5px;
+  display: flex;
+  /* flex-direction: column-reverse; */
+  /* align childs w.r.t main axis */
+  /* justify-content: end; */
+  justify-content: space-between;
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+
+  /* align childs w.r.t cross-axis */
+  align-items: center;
+  /* min row and col gap */
+  /* row-gap: 10px;
+  column-gap: 10px; */
+  gap: 10px;
+  /* shift child in next row if it is at a shrink point */
+  flex-wrap: wrap;
+}
+
+#container > div {
+  border: 1px solid red;
+  width: 75px;
+  height: 75px;
+}
