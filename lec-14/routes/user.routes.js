@@ -3,7 +3,7 @@ const router = express.Router(); //express.Router() is a function provided by th
 const User = require("../models/user.model");
 const { createUSer, getAllUsers } = require("../controllers/user.controller");
 
-router.get("/create",createUSer);
+router.post("/create",createUSer);
 router.get("/all",getAllUsers); 
 
 

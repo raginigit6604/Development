@@ -3,10 +3,16 @@ const User = require("../models/user.model");
 
 module.exports.createUSer = async(req,res)=>{
     try{
+        let {name,email,password} = req.body; // here i use destructuring
        let user = await User.create({
-        name:"Shizuka",
-        email:"shinchan@gmail.com",
-        password:"wed132"
+        // name:"Shinchan", '' here is use static
+        // email:"shizuka@gmail.com",
+        // password:"wed132"
+
+        // now i use dynamic
+           name:name,
+           email:email,
+           password:password
        })
        res.status(201).json({user});
     }catch(error){
