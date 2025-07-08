@@ -1,4 +1,48 @@
-import {User} from "../models/userModel.js"
+import { sendVerificationEmail,sendWelcomeEmail,sendPasswordResetEmail} from "../mailTrap/emails.js";
+import User from "../models/userModel.js";
+// import {User} from "../models/userModel.js";
+import { generateTokenAndSetCookie } from "../utilitis/generatewebTokenAndSetCookie.js";
+import bcryptjs from "bcryptjs";
+
+
+export const verifyEmail = async(req,res)=>{
+    const {code} = req.body;
+    try{
+         const user = await User.findOne({
+             verificationToken : code,
+             verificationTokenexpiresAt: {$gt: Date.now()}
+         })
+         console.log(user,'---------------------')
+         if(!user){
+            return res.status(400).json({
+                success: false,
+                message: "Invalid or expired token"
+            })
+         }
+         // here token match
+         user.isverified = true;
+         user.verificationToken = undefined,
+         user.verificationTokenexpiresAt = undefined;
+         await user.save();
+
+         await sendWelcomeEmail(user.name,user.email);
+
+          res.status(200).json({
+            sucess: true,
+            message: "email verified",
+            user: {
+                ...user._doc,
+                passowrd: undefined,
+            }
+         })
+    }catch(error){
+          console.log(error);
+          res.status(500).json({
+            success: false,
+            message: "server error"
+          })
+    }
+}
 
 export const signup = async (req,res)=>{
     const {email,password,name} = req.body; // here we destructuring the object
@@ -19,7 +63,7 @@ export const signup = async (req,res)=>{
 
         const user = new User({
             email,
-            password:hashedPassword,
+            password:hashedpassword,
             name,
             verificationToken,
             verificationTokenExpiresAt: Date.now()+ 24 *60*60*1000 // 24 hours from now we multiply into 1000 because convert milisecon into second
@@ -34,10 +78,78 @@ export const signup = async (req,res)=>{
             message:"User Created successfully",
             user:{
                 ...user._doc,
-                password:omitUndefined,
+                password:undefined,
             },
         });
     }catch(error){
+       res.status(400).json({success:false,message:error.message});
+    }
+}
 
+
+export const login = async(req,res)=>{
+    try{
+       const {email,password} = req.body;
+       const user = await User.findOne({email})
+       if(!user){
+        return res.status(400).json({
+            success: false,
+            message: "Email does not exist"
+        })
+       }
+       const isPasswordMatch = await bcryptjs.compare(password,user.password);
+       if(!isPasswordMatch){
+        return res.status(400).json({
+            success: false,
+            message: "Invalid Password"
+        })
+       }
+
+       user.lastlogin = new Date(); // here i update the date of user login
+       await user.save();
+
+       generateTokenAndSetCookie(res,user._id); // yahan hum isliye call kr rhe function ko kyunki access token expire ho gya hoga kyunki user ne phir se login kiya so aab new token generate hoga
+       res.status(200).json({
+        success:true,
+        message: "Login Success"
+       })
+    }catch(error){
+       console.log(error);
+    }
+}
+
+export const logout = async(req,res)=>{
+    res.clearCookie("token");
+    res.status(200).json({
+        success: true,
+        message: "logged out succesfully"
+    });
+}
+
+export const forgotPassword = async(req,res)=>{
+    try{
+        
+        const {email} = req.body;
+        const user = await user.findOne({email});
+        if(!user){
+            res.status(400).json({
+                success:false,
+                message:"user not found"
+            })
+        }
+
+        const resetToken = Math.floor(Math.random()*1000000);
+        const resetPasswordExpiresAt = Date.now() + 1*60*60*1000;
+
+        user.resetToken = resetToken;
+        user.resetPasswordExpiresAt = resetPasswordExpiresAt;
+
+        await user.save();
+        await sendPasswordResetEmail(user.email,resetToken);
+        
+
+
+    }catch(error){
+        console.log(error);
     }
 }

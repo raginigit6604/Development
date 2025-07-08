@@ -7,7 +7,7 @@ import express  from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import {connectDb} from "./database/connection.js";
-import {rout} from "./routes/authRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import cookieParser from 'cookie-parser';
 dotenv.config();
 const app = express();

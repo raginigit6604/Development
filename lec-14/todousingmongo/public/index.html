@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container w-[90vw] shadow-lg p-6 m-auto mt-32 my-4 bg-white rounded-md">
+        <h1 class="text-4xl text-center font-semibold mb-6">Task Master</h1>
+        <form action="/taskmaster" method="post" class="w-[60vw] m-auto mt-10 p-5 gap-5 flex w-full" id="form">
+            <input type="text" id="task" placeholder="Add a new task......." name="task" class="w-full border py-1 px-2 h-[8vh] rounded">
+            <button class="w-[8vw] px-3 py-2 rounded border bg-green-700 hover:bg-green-600 cursor-pointer text-white">Add task</button>
+        </form>
+       
+        <div id="btncontainer"class="flex gap-4 justify-center mt-4">
+        <button id="all" class="px-4 py-1.5 rounded-lg bg-green-700 hover:bg-green-600 cursor-pointer text-white">All</button>
+        <button id="active" class="px-4 py-1.5 rounded-lg border bg-gray-400 hover:bg-gray-300 cursor-pointer text-white">Active</button>
+        <button id="completed" class="px-4 py-1.5 rounded-lg border bg-gray-400 hover:bg-gray-300 cursor-pointer text-white" >Completed</button>
+        </div>
+          <!-- to push all todos in container -->
+          <div id="todocontainer" class="flex flex-col w-[73.3vw] rounded gap-2 mt-4 mb-6 mx-5 bg-gray-100">
+
+          </div>
+
+
+        <div class="flex justify-center">
+        <button class="m-auto rounded-lg justify-center px-3 py-1.5 rounded border bg-red-500 cursor-pointer text-white hover:bg-red-400" id="clearcompleted">Clear Completed</button>
+        </div>
+        <script src="main.js"></script>
+    </div>
+</body>
+</html>
