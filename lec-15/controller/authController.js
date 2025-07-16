@@ -57,7 +57,7 @@ export const signup = async (req,res)=>{
             res.status(400).json({success: false,message:"User already exists"})
         }
 
-        const hashedpassword = await bcryptjs.hash(password,10); // hash isa function from bcryptjs library it helps in encryption, and 10 means the complexity of the encryption that how much level of security we want for the encryption
+        const hashedpassword = await bcryptjs.hash(password,10); // hash is a function from bcryptjs library it helps in encryption, and 10 means the complexity of the encryption that how much level of security we want for the encryption
         const verificationToken = Math.floor(100000 + Math.random()*900000).toString(); // here i make 6-digit of otp code // math.random gives random number between 0 and 1 it gives in decimal math.floor used to remove the decimal part
         
 

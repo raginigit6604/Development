@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Commerce Product List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>E-Commerce Product List</h1>
+
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search products here..." />
+      <button onclick="searchProducts()">Search</button>
+      <button onclick="resetSearch()">Reset</button>
+    </div>
+
+    <ul id="productList"></ul>
+
+    <div class="add-product">
+      <h2>Add New Product</h2>
+      <input type="text" id="name" placeholder="Product Name" />
+      <input type="number" id="price" placeholder="Price" />
+      <input type="text" id="description" placeholder="Description" />
+      <input type="text" id="category" placeholder="Category" />
+      <input type="number" id="quantity" placeholder="Quantity" />
+      <button onclick="addProduct()">Add Product</button>
+    </div>
+  </div>
+
+  <!-- Update Modal -->
+  <div id="updateModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeUpdateModal()">&times;</span>
+      <h2>Update Product</h2>
+      <input id="updateName" type="text" placeholder="Product Name" />
+      <input id="updatePrice" type="number" placeholder="Price" />
+      <input id="updateDescription" type="text" placeholder="Description" />
+      <input id="updateCategory" type="text" placeholder="Category" />
+      <input id="updateQuantity" type="number" placeholder="Quantity" />
+      <button onclick="submitUpdate()">Update Product</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
